@@ -1,0 +1,46 @@
+<div class="container col-md-12 row">
+  <nb-card size="small" class="col-sm-12 col-md-6 size-small">
+    <h3>Company Details</h3>
+    <p>Name: </p>
+    <p>Adress: </p>
+    <p>Telephone: </p>
+    <p>Fax: </p>
+  </nb-card>
+  <nb-card size="small" class="col-sm-12 col-md-6 size-small traffic-card">
+
+    <nb-card-header>
+      <span>Sold Units This week</span>
+    </nb-card-header>
+    <nb-list role="list">
+      <nb-list-item role="listitem" *ngFor="let entry of trafficList">
+
+        <span>{{ entry.day }}</span>
+        <span>{{ entry.sold }}</span>
+        <span> {{ this.compareEntry(entry)+"%" }}</span>
+
+      </nb-list-item>
+    </nb-list>
+  </nb-card>
+</div>
+
+
+<div class="conatiner pos-desc">
+
+  <nb-card size="small" class="col-md-12 size-small">
+    <nb-card-header>
+      <span>New Orders</span>
+    </nb-card-header>
+    <nb-list role="list">
+      <nb-list-item role="listitem" *ngFor="let entry of spList">
+
+        <span>{{ entry.id }}</span>
+        <span>{{ entry.SP_Name }}</span>
+        <span>{{ entry.SP_Accountant_Name }}</span>
+        <button nbbutton matripple hero class="mat-ripple appearance-hero size-medium status-primary shape-rectangle ng-star-inserted nb-transition" (click)="addOrder()">Add</button>
+
+
+      </nb-list-item>
+    </nb-list>
+
+  </nb-card>
+</div>

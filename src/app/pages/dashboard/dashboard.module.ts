@@ -9,6 +9,12 @@ import { A11yModule } from '@angular/cdk/a11y';
 import { ObserversModule } from '@angular/cdk/observers';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { TrafficBarChartComponent } from './traffic-reveal-card/back-side/traffic-bar-chart.component';
+import { TrafficBackCardComponent } from './traffic-reveal-card/back-side/traffic-back-card.component';
+import { TrafficFrontCardComponent } from './traffic-reveal-card/front-side/traffic-front-card.component';
+import { TrafficBarComponent } from './traffic-reveal-card/front-side/traffic-bar/traffic-bar.component';
+import { TrafficRevealCardComponent } from './traffic-reveal-card/traffic-reveal-card.component';
+import { TrafficCardsHeaderComponent } from './traffic-reveal-card/traffic-cards-header/traffic-cards-header.component';
 
 const MATERIAL_MODULES = [
   OverlayModule,
@@ -38,7 +44,13 @@ const MATERIAL_MODULES = [
     DashboardRoutingModule
   ],
   declarations:[
-    DashboardComponent
+    DashboardComponent,
+    TrafficBarChartComponent,
+    TrafficBackCardComponent,
+    TrafficFrontCardComponent,
+    TrafficBarComponent,
+    TrafficRevealCardComponent,
+    TrafficCardsHeaderComponent
   ]
 })
 export class DashboardModule {

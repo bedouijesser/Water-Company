@@ -31,3 +31,15 @@
 
   @include nb-overrides();
 };
+::-webkit-scrollbar{
+  width: .625rem !important;
+  height: .3125rem !important;
+}
+::-webkit-scrollbar-thumb {
+  background: #d2d5dd !important;
+  cursor: pointer;
+  border-radius: .15625rem !important;
+}
+::-webkit-scrollbar-track {
+  background: #f7f9fc;
+}

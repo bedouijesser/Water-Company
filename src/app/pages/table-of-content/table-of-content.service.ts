@@ -5,13 +5,14 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class TableOfContentService {
-
-
+  getTOCRefList(arg0: number) {
+    throw new Error("Method not implemented.");
+  }
 
   private showContentActive:Object = {};
   private dataObj:Object = {};
   showContentRef = new Subject<boolean>();
-  reloadContentList = new Subject<boolean>();
+  reloadTOCList = new Subject<boolean>();
   addQuotationRef : {
     RFQ_ID: String,
     RFQ_Reference: String

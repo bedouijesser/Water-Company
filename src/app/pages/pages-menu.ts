@@ -12,5 +12,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'map',
     link: '/pages/sales-points',
     home: true,
+  },
+  {
+    title: 'Table of Content',
+    icon: 'archive',
+    link: '/pages/table-of-content',
+    home: true,
   }
 ];

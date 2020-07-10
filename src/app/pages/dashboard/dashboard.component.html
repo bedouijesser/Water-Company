@@ -1,26 +1,30 @@
 <div class="row">
   <div class="col-xxl-5">
-    <div class="col-sm-12 col-md-6">
-      <nb-card size="small" class="size-small">
-        <h3>Company Details</h3>
-        <p>Name: </p>
-        <p>Adress: </p>
-        <p>Telephone: </p>
-        <p>Fax: </p>
+    <div class="containter">
+
+      <nb-card size="small" class="size-small col-sm-12">
+        <nb-card-header>
+          <span>Company Details</span>
+        </nb-card-header>
+        <nb-list role="list">
+          <nb-list-item><span>Name :</span> <span></span> </nb-list-item>
+          <nb-list-item>Postal Address : </nb-list-item>
+          <nb-list-item>Physical Address : </nb-list-item>
+          <nb-list-item>Tel 1 : </nb-list-item>
+          <nb-list-item>Tel 2 : </nb-list-item>
+          <nb-list-item>Fax : </nb-list-item>
+        </nb-list>
       </nb-card>
 
     </div>
-
-    <ngx-traffic-reveal-card></ngx-traffic-reveal-card>
   </div>
-</div>
 
 
 
 
-<div class="conatiner pos-desc">
+    <div class="conatiner pos-desc col-xxl-7">
 
-  <nb-card size="small" class="col-md-12 size-small">
+  <nb-card size="small" class="col-md-12 size-small pos-desc-data">
     <nb-card-header>
       <span>New Orders</span>
     </nb-card-header>
@@ -30,7 +34,7 @@
         <span>{{ entry.id }}</span>
         <span>{{ entry.SP_Name }}</span>
         <span>{{ entry.SP_Accountant_Name }}</span>
-        <button nbbutton matripple hero class="mat-ripple appearance-hero size-medium status-primary shape-rectangle ng-star-inserted nb-transition" (click)="addOrder()">Add</button>
+        <button nbbutton matripple hero class="mat-ripple appearance-hero size-medium status-primary shape-rectangle ng-star-inserted nb-transition" (click)="addOrder()">Check</button>
 
 
       </nb-list-item>
@@ -38,3 +42,7 @@
 
   </nb-card>
 </div>
+
+</div>
+
+<ngx-traffic-reveal-card></ngx-traffic-reveal-card>

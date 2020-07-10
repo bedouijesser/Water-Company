@@ -10,6 +10,7 @@ import { ObserversModule } from '@angular/cdk/observers';
 import { SalesPointsComponent } from './sales-points.component';
 import { SpMapComponent } from './sp-map/sp-map.component';
 import { SalesPointsRoutingModule } from './sales-points-routing.module';
+import { SpMapDetailsComponent } from './sp-map/sp-map-details/sp-map-details.component';
 const MATERIAL_MODULES = [
   OverlayModule,
   PortalModule,
@@ -39,7 +40,8 @@ const MATERIAL_MODULES = [
   ],
   declarations: [
     SalesPointsComponent,
-    SpMapComponent
+    SpMapComponent,
+    SpMapDetailsComponent
   ]
 })
 

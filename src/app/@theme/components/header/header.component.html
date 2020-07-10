@@ -3,7 +3,7 @@
     <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
       <nb-icon icon="menu-2-outline"></nb-icon>
     </a>
-    <a class="logo" href="#" (click)="navigateHome()">[Company-Name]</a>
+    <a class="logo" href="#" (click)="navigateHome()">Company-Name</a>
   </div>
 
 </div>
@@ -16,7 +16,7 @@
     <nb-action class="user-action" *nbIsGranted="['view', 'user']" >
       <nb-user [nbContextMenu]="userMenu"
                [onlyPicture]="userPictureOnly"
-               name="Tahir"
+               name="User"
                >
       </nb-user>
     </nb-action>

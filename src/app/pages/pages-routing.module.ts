@@ -19,6 +19,11 @@ const routes: Routes = [{
       then(m => m.SalesPointsModule)
     },
     {
+      path: 'table-of-content',
+      loadChildren: () => import ('./table-of-content/table-of-content.module').
+      then(m => m.TableOfContentModule)
+    },
+    {
       path: '',
       redirectTo: 'dashboard',
       pathMatch: 'full',

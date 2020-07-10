@@ -20,7 +20,6 @@ export class DashboardComponent implements OnInit {
     {"id": 2,"SP_Name": "Societé Abadllah", "SP_Accountant_Name":"Salah Ben Abdallah"},
     {"id": 3,"SP_Name": "Societé Gaaloul", "SP_Accountant_Name":"Fathi Gaaloul"},
     {"id": 4,"SP_Name": "Societé Samir", "SP_Accountant_Name":"Yahya Samir"},
-
   ]
 
   constructor() {}

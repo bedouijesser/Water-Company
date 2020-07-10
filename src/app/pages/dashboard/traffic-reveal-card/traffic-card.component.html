@@ -1,0 +1,17 @@
+
+<nb-card size="small" class="col-md-12 size-small pos-desc-data">
+
+    <nb-card-header>
+      <span>Sold Units This week</span>
+    </nb-card-header>
+    <nb-list role="list">
+      <nb-list-item role="listitem" *ngFor="let entry of trafficList">
+
+        <span>{{ entry.day }}</span>
+        <span>{{ entry.sold }}</span>
+        <span> {{ this.compareEntry(entry)+"%" }}</span>
+
+      </nb-list-item>
+    </nb-list>
+  </nb-card>
+

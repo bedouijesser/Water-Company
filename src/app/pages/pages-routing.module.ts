@@ -11,17 +11,17 @@ const routes: Routes = [{
   children: [
     {
       path: 'dashboard',
-      loadChildren: () => import ('./dashboard/dashboard.module').then(m => m.DashboardModule)
+      loadChildren: () => import ('./dashboard/dashboard.module').then(m => m.DashboardModule),
     },
     {
       path: 'sales-points',
       loadChildren: () => import ('./sales-points/sales-points.module').
-      then(m => m.SalesPointsModule)
+      then(m => m.SalesPointsModule),
     },
     {
       path: 'table-of-content',
       loadChildren: () => import ('./table-of-content/table-of-content.module').
-      then(m => m.TableOfContentModule)
+      then(m => m.TableOfContentModule),
     },
     {
       path: '',

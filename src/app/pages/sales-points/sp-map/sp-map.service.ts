@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import * as mapboxgl from 'mapbox-gl'
+import * as mapboxgl from 'mapbox-gl';
 import { environment } from '../../../../environments/environment';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { Subject } from 'rxjs';
 import { info } from 'console';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 
 export class SPMapService {
@@ -27,15 +27,15 @@ export class SPMapService {
   }
 
   buildMap() {
-    if(!this.RTLTextPlugin){
+    if (!this.RTLTextPlugin){
       mapboxgl.setRTLTextPlugin(
         'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js',
         null,
-        true // Lazy load the plugin
+        true, // Lazy load the plugin
         );
-      this.RTLTextPlugin=true;
+      this.RTLTextPlugin = true;
     }
-    var geojson = {
+    const geojson = {
       'type': 'FeatureCollection',
       'features': [{
           'type': 'Feature',
@@ -45,44 +45,44 @@ export class SPMapService {
             'manager': 'Ben-Salama Charfeddin',
             'iconSize': [80, 80],
             'type': 'Home-Building',
-            'email': 'Company@corporation.com'
+            'email': 'Company@corporation.com',
           },
           'geometry': {
             'type': 'Point',
-            'coordinates': [35.35, 10]
-          }
+            'coordinates': [35.35, 10],
+          },
         },
         {
           'type': 'Feature',
           'properties': {
             'title': 'Sales-point 1',
-            'description': "Societé Berrich",
-            'manager': "Ahmed Berrich",
+            'description': 'Societé Berrich',
+            'manager': 'Ahmed Berrich',
             'iconSize': [70, 70],
             'type': 'Sales-point',
-            'email': 'Berrich@corp.com'
+            'email': 'Berrich@corp.com',
           },
           'geometry': {
             'type': 'Point',
-            'coordinates': [33.2158203125, 10.97189158092897]
-          }
+            'coordinates': [33.2158203125, 10.97189158092897],
+          },
         },
         {
           'type': 'Feature',
           'properties': {
             'title': 'Sales-point 2',
-            'description': "Societé Gaaloul",
+            'description': 'Societé Gaaloul',
             'iconSize': [70, 70],
             'type': 'Sales-Point',
-            'manager': "Fathi Gaaloul",
-            'email': 'Gaaloul@corp.com'
+            'manager': 'Fathi Gaaloul',
+            'email': 'Gaaloul@corp.com',
           },
           'geometry': {
             'type': 'Point',
-            'coordinates': [32.29223632812499, 10.28151823530889]
-          }
-        }
-      ]
+            'coordinates': [32.29223632812499, 10.28151823530889],
+          },
+        },
+      ],
     };
 
     this.map = new mapboxgl.Map({
@@ -90,39 +90,39 @@ export class SPMapService {
       style: this.style,
       zoom: this.zoom,
       center: [this.lng, this.lat],
-      attributionControl: false
-    })
+      attributionControl: false,
+    });
 
-    var geocoder = new MapboxGeocoder({
+    const geocoder = new MapboxGeocoder({
       accessToken: mapboxgl.accessToken,
       marker: {
-      color: 'orange'
+      color: 'orange',
       },
-      mapboxgl: mapboxgl
+      mapboxgl: mapboxgl,
       });
 
     this.map.addControl(geocoder);
     this.map.addControl(new mapboxgl.NavigationControl());
     this.map.addControl(new mapboxgl.FullscreenControl({
-      container: document.querySelector('.map-element')
+      container: document.querySelector('.map-element'),
     }));
 
     let marker;
 
     // add markers to map
 
-    for (let info of geojson.features) {
-      var el = document.createElement('div');
+    for (const info of geojson.features) {
+      const el = document.createElement('div');
       el.className = 'marker';
-      el.style.backgroundImage = info.properties.type == 'Home-Building' ? "url('/assets/images/Building-location-icon.png')":"url('/assets/images/SP-location-icon.png')" ;
-      el.style.backgroundSize= "cover";
+      el.style.backgroundImage = info.properties.type == 'Home-Building' ? 'url(\'/assets/images/Building-location-icon.png\')' : 'url(\'/assets/images/SP-location-icon.png\')' ;
+      el.style.backgroundSize = 'cover';
       el.style.width = info.properties.iconSize[0] + 'px';
       el.style.height = info.properties.iconSize[1] + 'px';
 
-      let mouseClickHandler = () => {
+      const mouseClickHandler = () => {
         this.showMarkerInfos(info);
-      }
-      el.addEventListener('click',mouseClickHandler.bind(this))
+      };
+      el.addEventListener('click', mouseClickHandler.bind(this));
 
       // Create a new Marker instence and add it to the map
       marker = new mapboxgl.Marker(el)
@@ -131,7 +131,7 @@ export class SPMapService {
           offset: 25,
           closeButton: false,
           closeOnClick: true,
-          anchor: 'bottom'
+          anchor: 'bottom',
         }) // add popups
         .setHTML(`<p class ='Title'>${info.properties.description}</p>`))
         .addTo(this.map);
@@ -149,7 +149,7 @@ export class SPMapService {
     this.markerSelected.next(false);
   }
   refrechMarkerInfo(){
-    let x =this.markerInfo;
+    const x = this.markerInfo;
     this.hideMarkerInfos();
     this.showMarkerInfos(x);
   }

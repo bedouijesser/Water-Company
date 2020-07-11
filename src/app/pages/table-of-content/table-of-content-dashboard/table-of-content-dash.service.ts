@@ -2,15 +2,11 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TableOfContentService {
-  getTOCRefList(arg0: number) {
-    throw new Error("Method not implemented.");
-  }
 
-  private showContentActive:Object = {};
-  private dataObj:Object = {};
+  private dataObj: Object = {};
   showContentRef = new Subject<boolean>();
   reloadTOCList = new Subject<boolean>();
 
@@ -18,16 +14,15 @@ export class TableOfContentService {
     return this.showContentRef;
   }
   getShowContentData(): any {
-    return this.dataObj
+    return this.dataObj;
   }
 
   showContent(prodInfo) {
-    this.showContentActive=prodInfo;
     this.showContentRef.next(true);
+    this.dataObj = prodInfo;
   }
 
   showList(){
-    this.showContentActive = null;
     this.showContentRef.next(true);
   }
 

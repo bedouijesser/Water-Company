@@ -11,12 +11,12 @@ export interface UserData {
   Status: string;
   Product_name: string;
   Category: string;
-  Quantity: number
+  Quantity: number;
 }
 @Component({
   selector: 'ngx-list-content',
   templateUrl: './list-content.component.html',
-  styleUrls: ['./list-content.component.scss']
+  styleUrls: ['./list-content.component.scss'],
 })
 export class ListContentComponent implements OnInit {
 
@@ -87,7 +87,7 @@ export class ListContentComponent implements OnInit {
   /***********************************************************
    * Table Configuration
    */
-  displayedColumns: string[] = ['ref', 'status', 'name','category','quantity'];
+  displayedColumns: string[] = ['ref', 'status', 'name', 'category', 'quantity'];
   dataSource: MatTableDataSource <UserData> ;
 
   applyFilter(filterValue: string) {
@@ -101,7 +101,7 @@ export class ListContentComponent implements OnInit {
 
   }
   showContent(row){
-    console.log(row)
+    console.log(row);
     this.tocService.showContent(row);
   }
 

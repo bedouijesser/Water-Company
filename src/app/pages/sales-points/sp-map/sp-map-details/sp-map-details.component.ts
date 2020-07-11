@@ -10,12 +10,12 @@ export interface UserData {
   Status: string;
   Product_name: string;
   Category: string;
-  Quantity: number
+  Quantity: number;
 }
 @Component({
   selector: 'ngx-sp-map-details',
   templateUrl: './sp-map-details.component.html',
-  styleUrls: ['./sp-map-details.component.scss']
+  styleUrls: ['./sp-map-details.component.scss'],
 })
 
 export class SpMapDetailsComponent implements OnInit {
@@ -34,13 +34,13 @@ export class SpMapDetailsComponent implements OnInit {
 
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    this.markerInfo = this.spMapService.markerInfo
-    this.spMapService.markerSelected.subscribe(value=> {
-      this.markerInfo = this.spMapService.markerInfo
-    })
+    this.markerInfo = this.spMapService.markerInfo;
+    this.spMapService.markerSelected.subscribe(value => {
+      this.markerInfo = this.spMapService.markerInfo;
+    });
   }
   handleDateChange(event){
-    console.log(event)
+    console.log(event);
   }
 
   productList = [
@@ -77,7 +77,7 @@ export class SpMapDetailsComponent implements OnInit {
 
 
 
-  displayedColumns: string[] = ['ref', 'status', 'name','category','quantity'];
+  displayedColumns: string[] = ['ref', 'status', 'name', 'category', 'quantity'];
   dataSource: MatTableDataSource <UserData> ;
 
   applyFilter(filterValue: string) {

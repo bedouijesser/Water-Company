@@ -4,7 +4,7 @@ import { SPMapService } from './sp-map.service';
 @Component({
   selector: 'ngx-sp-map',
   templateUrl: './sp-map.component.html',
-  styleUrls: ['./sp-map.component.scss']
+  styleUrls: ['./sp-map.component.scss'],
 })
 export class SpMapComponent implements OnInit {
   markerSelected: boolean = false;
@@ -13,10 +13,10 @@ export class SpMapComponent implements OnInit {
 
   ngOnInit() {
     this.map.buildMap();
-    this.map.markerSelected.subscribe(value =>{
+    this.map.markerSelected.subscribe(value => {
         this.markerSelected = value;
 
-    })
+    });
   }
   exitMarker(e){
     // checks if a "click" event targets a markers, else removes the details

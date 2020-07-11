@@ -12,7 +12,7 @@ const routes: Routes = [{
   children: [
     {
       path: 'map',
-      component: SpMapComponent
+      component: SpMapComponent,
     },
     {
       path: '',

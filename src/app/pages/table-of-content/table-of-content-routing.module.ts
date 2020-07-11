@@ -13,15 +13,15 @@ const routes: Routes = [{
   children: [
     {
       path: 'dash',
-      component: TableOfContentDashboardComponent
+      component: TableOfContentDashboardComponent,
     },
     {
       path: 'add-component',
-      component: TableOfContentDashboardComponent
+      component: TableOfContentDashboardComponent,
     },
     {
       path: '**',
-      redirectTo: 'dash'
+      redirectTo: 'dash',
     },
   ],
 }];

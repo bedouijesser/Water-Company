@@ -4,18 +4,18 @@ import { Subject } from 'rxjs';
 @Component({
   selector: 'ngx-show-content',
   templateUrl: './show-content.component.html',
-  styleUrls: ['./show-content.component.scss']
+  styleUrls: ['./show-content.component.scss'],
 })
 export class ShowContentComponent implements OnInit {
 
 
-  private showSuppQuotActive:Object = {};
-  private dataObj:Object = {};
+  private showSuppQuotActive: Object = {};
+  private dataObj: Object = {};
   showTOCRef = new Subject<boolean>();
   reloadTOCList = new Subject<boolean>();
-  addQuotationRef : {
+  addQuotationRef: {
     RFQ_ID: String,
-    RFQ_Reference: String
+    RFQ_Reference: String,
   };
   constructor() { }
 

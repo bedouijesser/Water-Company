@@ -17,7 +17,7 @@ const MATERIAL_MODULES = [
   PortalModule,
   BidiModule,
   A11yModule,
-  ObserversModule
+  ObserversModule,
   ];
 
 @NgModule({
@@ -37,12 +37,12 @@ const MATERIAL_MODULES = [
     FormsModule,
     ReactiveFormsModule,
     NbRadioModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
   ],
-  declarations:[
+  declarations: [
     DashboardComponent,
-    TrafficCardComponent
-  ]
+    TrafficCardComponent,
+  ],
 })
 export class DashboardModule {
 

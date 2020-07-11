@@ -12,14 +12,14 @@ import { ShowContentComponent } from './table-of-content-dashboard/show-content/
 import { ListContentComponent } from './table-of-content-dashboard/list-content/list-content.component';
 import { TableOfContentDashboardComponent } from './table-of-content-dashboard/table-of-content-dashboard.component';
 
-import { MatButtonModule } from "@angular/material/button";
-import { MatCheckboxModule } from "@angular/material/checkbox";
-import { MatButtonToggleModule } from "@angular/material/button-toggle";
-import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
-import { MatSortModule, MatSortHeader } from '@angular/material/sort';
+import { MatSortModule } from '@angular/material/sort';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTableModule } from '@angular/material/table';
@@ -88,7 +88,7 @@ import { MatDialogModule } from '@angular/material/dialog';
       FormsModule,
       ReactiveFormsModule,
       NbRadioModule,
-      TableOfContentRoutingModule
+      TableOfContentRoutingModule,
 
     ],
     declarations: [
@@ -97,6 +97,6 @@ import { MatDialogModule } from '@angular/material/dialog';
       ListContentComponent,
       TableOfContentDashboardComponent,
 
-    ]
+    ],
   })
 export class TableOfContentModule {}

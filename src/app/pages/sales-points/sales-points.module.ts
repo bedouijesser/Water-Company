@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ThemeModule } from '../../@theme/theme.module';
-import { NbCardModule, NbStepperModule, NbUserModule, NbButtonModule, NbIconModule, NbTabsetModule, NbSelectModule, NbListModule, NbInputModule, NbProgressBarModule, NbRadioModule, NbCalendarRangeModule, NbBaseCalendarModule, NbCalendarViewMode, NbCalendarModule, NbCalendarKitModule } from '@nebular/theme';
+import { NbCardModule, NbStepperModule, NbUserModule, NbButtonModule, NbIconModule, NbTabsetModule, NbSelectModule, NbListModule, NbInputModule, NbProgressBarModule, NbRadioModule, NbCalendarRangeModule, NbBaseCalendarModule, NbCalendarModule, NbCalendarKitModule } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
@@ -69,13 +69,13 @@ const MATERIAL_MODULES = [
     FormsModule,
     ReactiveFormsModule,
     NbRadioModule,
-    SalesPointsRoutingModule
+    SalesPointsRoutingModule,
   ],
   declarations: [
     SalesPointsComponent,
     SpMapComponent,
-    SpMapDetailsComponent
-  ]
+    SpMapDetailsComponent,
+  ],
 })
 
 

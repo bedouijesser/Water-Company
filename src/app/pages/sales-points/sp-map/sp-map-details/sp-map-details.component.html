@@ -1,6 +1,75 @@
 <nb-card class="sp-details">
   <nb-card-header> Sales points Details </nb-card-header>
-  <nb-card-body class="sp-container">
-    <div id="sp" class="sp"></div>
+  <nb-card-body class="sp-container container row">
+    <div class="col-xxl-4">
+      <div class="containter">
+
+        <nb-card size="small" class="size-small col-sm-12">
+          <nb-card-header>
+            <span>Company Details</span>
+          </nb-card-header>
+          <nb-list role="list">
+            <nb-list-item><span>Name :</span> <span>{{ markerInfo.properties.description }}</span></nb-list-item>
+            <nb-list-item><span>Manager :</span><span> {{ markerInfo.properties.manager }}</span> </nb-list-item>
+            <nb-list-item><span>Email :</span><span>{{ markerInfo.properties.email }}</span> </nb-list-item>
+            <nb-list-item><span>Tel : </span><span>(+216) 98765432</span> </nb-list-item>
+            <nb-list-item><span>Fax : </span><span>(+216) 76543210</span> </nb-list-item>
+
+          </nb-list>
+        </nb-card>
+
+      </div>
+    </div>
+    <!-- Products Tables Element -->
+    <div class="col-xxl-8" *ngIf="markerInfo.properties.type !== 'Home-Building'">
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+          <!-- Reference Column -->
+          <ng-container matColumnDef="ref">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Reference</th>
+            <td mat-cell *matCellDef="let row" [ngClass]="row.Status == 'Unavailable'? 'UA':'A'">{{row.Reference}}</td>
+          </ng-container>
+
+          <!-- Status Column -->
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+            <td mat-cell *matCellDef="let row" [ngClass]="row.Status == 'Unavailable'? 'UA':'A'">{{row.Status}} </td>
+          </ng-container>
+
+          <!-- Product Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+            <td mat-cell *matCellDef="let row" [ngClass]="row.Status == 'Unavailable'? 'UA':'A'"> {{row.Product_name}}
+            </td>
+          </ng-container>
+
+          <!-- Product Category Column -->
+          <ng-container matColumnDef="category">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+            <td mat-cell *matCellDef="let row" [ngClass]="row.Status == 'Unavailable'? 'UA':'A'"> {{row.Category}} </td>
+          </ng-container>
+
+          <!-- Product Quantity Column -->
+          <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </th>
+            <td mat-cell *matCellDef="let row" [ngClass]="row.Status == 'Unavailable'? 'UA':'A'"> {{row.Quantity}} </td>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showContent(row)">
+          </tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      </div>
+    </div>
+    <!-- Calender Element -->
+
+    <div class="col-xxl-4" *ngIf="markerInfo.properties.type !== 'Home-Building'">
+      <nb-calendar [date]="date" (dateChange)="handleDateChange($event)"></nb-calendar>
+    </div>
+
+
   </nb-card-body>
 </nb-card>

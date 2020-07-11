@@ -9,15 +9,19 @@ import { info } from 'console';
 })
 
 export class SPMapService {
+  // Map attributes
   map: mapboxgl.Map;
   style = 'mapbox://styles/mapbox/streets-v11';
   lat = 35.8869;
   lng = 9.5375;
   zoom = 6;
-  markerSelected: Subject<boolean>;
-  markerInfo: Subject<Object>;
   RTLTextPlugin: boolean = false;
+
+  // Service Attributes
+  markerSelected = new Subject<boolean>();
+  markerInfo: Object= null;
   markerInstences = [];
+
   constructor() {
     mapboxgl.accessToken = environment.mapbox.accessToken;
   }
@@ -45,7 +49,8 @@ export class SPMapService {
             'title': 'Main-Building',
             'description': 'Main-Building',
             'iconSize': [80, 80],
-            'type': 'Home-Building'
+            'type': 'Home-Building',
+            'email': 'Company@corporation.com'
           },
           'geometry': {
             'type': 'Point',
@@ -57,8 +62,10 @@ export class SPMapService {
           'properties': {
             'title': 'Sales-point 1',
             'description': "Societé Berrich",
+            'manager': "Ahmed Berrich",
             'iconSize': [70, 70],
-            'type': 'Sales-point'
+            'type': 'Sales-point',
+            'email': 'Berrich@corp.com'
           },
           'geometry': {
             'type': 'Point',
@@ -71,7 +78,9 @@ export class SPMapService {
             'title': 'Sales-point 2',
             'description': "Societé Gaaloul",
             'iconSize': [70, 70],
-            'type': 'Sales-Point'
+            'type': 'Sales-Point',
+            'manager': "Fathi Gaaloul",
+            'email': 'Gaaloul@corp.com'
           },
           'geometry': {
             'type': 'Point',
@@ -109,9 +118,7 @@ export class SPMapService {
     // Popup instentiation
     let popup = new mapboxgl.Popup({
       offset: 25,
-      closeButton: false,
-      closeOnClick: true,
-      anchor: 'bottom'
+
     });
 
     // add markers to map
@@ -125,7 +132,6 @@ export class SPMapService {
       el.style.height = info.properties.iconSize[1] + 'px';
 
       let mouseClickHandler = () => {
-        this.markerSelected.next(true);
         this.showMarkerInfos(info);
       }
       el.addEventListener('click',mouseClickHandler.bind(this))
@@ -133,15 +139,28 @@ export class SPMapService {
       // Create a new Marker instence and add it to the map
       marker = new mapboxgl.Marker(el)
         .setLngLat([info.geometry.coordinates[1], info.geometry.coordinates[0]])
-        .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+        .setPopup(new mapboxgl.Popup({
+          offset: 25,
+          closeButton: false,
+          closeOnClick: true,
+          anchor: 'bottom'
+        }) // add popups
         .setHTML(`<p class ='Title'>${info.properties.description}</p>`))
         .addTo(this.map);
         this.markerInstences.push({'name': info.properties.title, 'value': marker});
       }
   }
+
   showMarkerInfos(info: Object) {
-    this.markerInfo.next(info)
+    console.log(info)
+    this.markerInfo = info;
+    this.markerSelected.next(true);
   }
+  hideMarkerInfos(){
+    this.markerInfo = null;
+    this.markerSelected.next(false);
+  }
+
 }
 
 

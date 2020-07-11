@@ -2,3 +2,70 @@
   width: 100%;
   height: 100%;
 }
+.btnNewPreFile,.btnShowPreFile{
+  margin-left:10px;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+
+tr:hover{
+background-color: rgba(0,0,0,0.2) !important;
+cursor:pointer;
+}
+.filterInput{
+margin-top:10px;
+margin-bottom:5px;
+}
+
+.mat-column-status{
+  width: 15% !important;
+}
+.mat-column-name{
+  width: 20% !important;
+}
+.mat-column-category{
+  width: 10% !important;
+}
+.mat-column-addedByName{
+  width: 15% !important;
+}
+.mat-column-ref{
+  width: 15% !important;
+}
+.mat-column-deadline{
+  width: 15% !important;
+}
+.btnHide{
+  text-align: right;
+}
+.cancelBtn{
+  padding:0px;
+  text-align:left;
+}
+.btnShowTaskMenu{
+  padding:0px;
+  text-align:left;
+
+}
+
+nb-list-item > span {
+  flex: 1;
+  flex-direction: row;
+}
+nb-list-item > span:nth-child(1){
+  border-top: none;
+}
+nb-list-item > span:nth-child(2){
+  flex: 2;
+}

@@ -1,0 +1,178 @@
+h2{
+  text-align:center;
+  color:#4285f4;
+  font-weight:bold;
+  margin-bottom:50px;
+}
+table{
+  background-color: #dee1e6;
+  font-weight:bold;
+  border-color: black !important;
+}
+th{
+  background-color: gray;
+}
+tr:hover{
+  background-color: #43494e;
+  color: whitesmoke;
+}
+.btnHide{
+  text-align: right;
+}
+h3{
+  color:white;
+  font-weight:bold;
+}
+.container{
+  background-color:#323259 ;
+  margin-top:0px;
+  margin-bottom:0px;
+  padding:50px 70px;
+  color:white;
+
+}
+.custom-file{
+  margin-top:10px;
+  width:100%;
+}
+.fileType{
+  margin: 10px;
+}
+.fileTypeTitle{
+  margin-top:20px;
+  margin-bottom:2px;
+}
+.validationButtons{
+  margin-top:20px;
+  width:100%;
+}
+.transferTo{
+  margin-top:15px;
+  margin-bottom:15px;
+}
+.calendar {
+  margin-left:20px;
+}
+.title{
+  font-weight: bold;
+}
+::ng-deep .mat-focused .mat-form-field-label {
+/*change color of label*/
+color: white ;
+}
+
+::ng-deep.mat-form-field-underline {
+/*change color of underline*/
+background-color: black !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+/*change color of underline when focused*/
+background-color: white ;
+}
+
+::ng-deep .mat-form-field-label {
+/*change color of label*/
+color: white ;
+}
+
+
+mat-datepicker-toggle {
+color: white;
+}
+
+.alert{
+  padding-top:2px;
+  padding-bottom:2px;
+  margin-top:0px;
+
+}
+.transferLabel{
+  margin-bottom:10px;
+}
+.folder{
+  padding-top:15px;
+}
+.fileInput{
+  margin-left:0px;
+}
+.createBtn{
+  text-align: right;
+  padding:0px;
+}
+.inputIcon{
+  text-align:left;
+  padding-left:10px;
+}
+.deleteIcon{
+  padding-right:5px;
+  text-align:right;
+}
+.cancelBtn{
+  padding:0px;
+  text-align:left;
+}
+.smallCancelBtn{
+  padding-left:0px;
+}
+.resetButtons{
+  padding-bottom:0px;
+  padding-left:5px;
+  padding-right:5px;
+}
+.addTransButton{
+  margin-right:5px;
+  padding-right:10px;
+  padding-bottom:0px;
+}
+.addTransButton1{
+  padding-bottom:0px;
+}
+.cancelSmall{
+  margin:0px;
+}
+
+.personInfo{
+  margin-left:5%;
+  margin-top:20px;
+  margin-right:5%;
+}
+.personField{
+  margin-bottom:10px;
+}
+.personField input{
+  margin-top:10px;
+}
+.personTitle{
+  margin-top:20px;
+}
+.field{
+  margin-left:5%;
+  margin-right: 5%;
+  margin-top:10px;
+  margin-bottom:10px;
+}
+.firstName{
+  margin-bottom:10px;
+}
+mat-form-field{
+  background-color: #252547;
+  border-radius: 0.4em;
+  padding-right:10px;
+  padding-left:10px;
+  padding-bottom:0px;
+  border:1px solid #1b1c37;
+}
+.typeGrade{
+  margin-left:10%;
+  margin-top:20px;
+  margin-bottom:20px;
+}
+.errorMessage{
+  color:black;
+  font-weight:bold;
+  margin-left:20px;
+}
+.country3{
+  margin-top:10px;
+}

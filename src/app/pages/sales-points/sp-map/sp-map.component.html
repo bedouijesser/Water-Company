@@ -1,7 +1,7 @@
 <nb-card class="map">
   <nb-card-header> Sales points Map </nb-card-header>
   <nb-card-body class="map-container">
-    <div id="map" class="map-element"></div>
+    <div id="map" class="map-element" (click)="exitMarker($event)"></div>
   </nb-card-body>
 </nb-card>
-<ngx-sp-map-details ></ngx-sp-map-details>
+<ngx-sp-map-details *ngIf="this.markerSelected"></ngx-sp-map-details>

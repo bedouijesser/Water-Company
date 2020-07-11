@@ -3,24 +3,25 @@ import { NgModule } from '@angular/core';
 import { NotFoundComponent } from '../miscellaneous/not-found/not-found.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ListContentComponent } from './table-of-content-dashboard/list-content/list-content.component';
+import { TableOfContentComponent } from './table-of-content.component';
+import { TableOfContentDashboardComponent } from './table-of-content-dashboard/table-of-content-dashboard.component';
 
 
 const routes: Routes = [{
   path: '',
-  component: ListContentComponent,
+  component: TableOfContentComponent,
   children: [
     {
-      path: 'content-list',
-      component: ListContentComponent
+      path: 'dash',
+      component: TableOfContentDashboardComponent
     },
     {
-      path: '',
-      redirectTo: 'map',
-      pathMatch: 'full',
+      path: 'add-component',
+      component: TableOfContentDashboardComponent
     },
     {
       path: '**',
-      component: NotFoundComponent,
+      redirectTo: 'dash'
     },
   ],
 }];

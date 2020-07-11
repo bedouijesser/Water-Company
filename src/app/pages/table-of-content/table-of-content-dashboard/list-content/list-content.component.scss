@@ -1,6 +1,7 @@
-.table,td{
-  color:white;
+table, td, mat-paginator-icon {
+  color: white !important;
 }
+
 nb-card-body{
   padding-top:0px;
 }
@@ -10,7 +11,7 @@ nb-card-body{
 
 table {
   width: 100%;
-  background-color: #323259;
+  background-color: #5c5cac;
 }
 
 .mat-form-field {
@@ -21,8 +22,16 @@ table {
 td, th {
   width: 25%;
 }
+td.UA{
+  background-color: #63cdd7 ;
+}
 mat-paginator{
-  background-color: #323259;
+  background-color: #505085;
+  color: white;
+}
+.mat-option-text {
+  background-color: white !important;
+  align-items: center;
 }
 tr:hover{
 background-color: rgba(0,0,0,0.2) !important;
@@ -32,37 +41,15 @@ cursor:pointer;
 margin-top:10px;
 margin-bottom:5px;
 }
-.onGoingBeforeDeadline,.onGoingAfterDeadline,.closedBeforeDeadline,.closedAfterDeadline,.underCreation{
-  height: 10px;
-  width: 10px;
-  border-radius: 50%;
-  display: inline-block;
-}
-.onGoingBeforeDeadline{
-  background-color: #01b8f2;
-}
-
-.onGoingAfterDeadline{
-  background-color: #f8a000;
-}
-.closedBeforeDeadline{
-  background-color: #37f813;
-}
-.closedAfterDeadline{
-  background-color: red;
-}
-.underCreation{
-  background-color: white;
-}
 
 .mat-column-status{
   width: 15% !important;
 }
-.mat-column-projectType{
-  width: 10% !important;
-}
-.mat-column-dsfTitle{
+.mat-column-name{
   width: 20% !important;
+}
+.mat-column-category{
+  width: 10% !important;
 }
 .mat-column-addedByName{
   width: 15% !important;

@@ -3,14 +3,15 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material';
-import { TableOfContentService } from '../../table-of-content.service';
+import { TableOfContentService } from '../table-of-content-dash.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 export interface UserData {
-  productRef: number;
-  productStatus: string;
-  productName: string;
-  product: string;
+  Reference: string;
+  Status: string;
+  Product_name: string;
+  Category: string;
+  Quantity: number
 }
 @Component({
   selector: 'ngx-list-content',
@@ -20,7 +21,36 @@ export interface UserData {
 export class ListContentComponent implements OnInit {
 
 
-  public rfqList: any[] = [];
+  public productList = [
+    {
+      'Reference' : '1',
+      'Status': 'Available',
+      'Product_name': 'Maroua',
+      'Category': '1L',
+      'Quantity': 580,
+    },
+    {
+      'Reference' : '2',
+      'Status': 'Available',
+      'Product_name': 'Maroua',
+      'Category': '1,5L',
+      'Quantity': 463,
+    },
+    {
+      'Reference' : '3',
+      'Status': 'Unavailable',
+      'Product_name': 'Milliti',
+      'Category': '1L',
+      'Quantity': 0,
+    },
+    {
+      'Reference' : '4',
+      'Status': 'Available',
+      'Product_name': 'Milliti',
+      'Category': '1,5L',
+      'Quantity': 255,
+    },
+  ];
   private activatedReloadRfqList: Subscription;
 
 
@@ -32,7 +62,7 @@ export class ListContentComponent implements OnInit {
     private router: Router) {
 
     // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(this.rfqList);
+    this.dataSource = new MatTableDataSource(this.productList);
 
   }
   ngOnInit() {
@@ -46,21 +76,19 @@ export class ListContentComponent implements OnInit {
   }
   reloadList() {
 
-        this.rfqList
         // Assign the data to the data source for the table to render
-        this.dataSource = new MatTableDataSource(this.rfqList);
+        this.dataSource = new MatTableDataSource(this.productList);
 
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
 
   }
 
-
   /***********************************************************
    * Table Configuration
    */
-  displayedColumns: string[] = ['ref', 'status', 'name','category'];
-  dataSource: MatTableDataSource < UserData > ;
+  displayedColumns: string[] = ['ref', 'status', 'name','category','quantity'];
+  dataSource: MatTableDataSource <UserData> ;
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -72,8 +100,8 @@ export class ListContentComponent implements OnInit {
   addContent(){
 
   }
-  showContent(){
-
+  showContent(row){
+    console.log(row)
   }
 
 }

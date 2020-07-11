@@ -28,8 +28,6 @@ export class TableOfContentService {
   showContent(rfqElm, dataObj) {
     this.showContentActive=rfqElm;
     this.dataObj = dataObj;
-    // console.log(rfqElm.RFQ_ID);
-
     this.showContentRef.next(true);
 
   }
@@ -46,8 +44,6 @@ export class TableOfContentService {
     this.showContentActive = null;
     this.showContentRef.next(true);
   }
-  addSupplierQuotation(ref){
-    this.addQuotationRef = ref;
-  }
+
 
 }

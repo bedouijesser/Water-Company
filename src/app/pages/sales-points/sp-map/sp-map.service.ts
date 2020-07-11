@@ -35,12 +35,6 @@ export class SPMapService {
         );
       this.RTLTextPlugin=true;
     }
-    var spList = [
-      {"id": 1,"SP_Name": "Societé Berrich", "SP_Accountant_Name":"Ahmed Berrich"},
-      {"id": 2,"SP_Name": "Societé Abadllah", "SP_Accountant_Name":"Salah Ben Abdallah"},
-      {"id": 3,"SP_Name": "Societé Gaaloul", "SP_Accountant_Name":"Fathi Gaaloul"},
-      {"id": 4,"SP_Name": "Societé Samir", "SP_Accountant_Name":"Yahya Samir"},
-    ]
     var geojson = {
       'type': 'FeatureCollection',
       'features': [{
@@ -48,6 +42,7 @@ export class SPMapService {
           'properties': {
             'title': 'Main-Building',
             'description': 'Main-Building',
+            'manager': 'Ben-Salama Charfeddin',
             'iconSize': [80, 80],
             'type': 'Home-Building',
             'email': 'Company@corporation.com'
@@ -114,13 +109,6 @@ export class SPMapService {
 
     let marker;
 
-
-    // Popup instentiation
-    let popup = new mapboxgl.Popup({
-      offset: 25,
-
-    });
-
     // add markers to map
 
     for (let info of geojson.features) {
@@ -152,13 +140,18 @@ export class SPMapService {
   }
 
   showMarkerInfos(info: Object) {
-    console.log(info)
+    // console.log(info)
     this.markerInfo = info;
     this.markerSelected.next(true);
   }
   hideMarkerInfos(){
     this.markerInfo = null;
     this.markerSelected.next(false);
+  }
+  refrechMarkerInfo(){
+    let x =this.markerInfo;
+    this.hideMarkerInfos();
+    this.showMarkerInfos(x);
   }
 
 }

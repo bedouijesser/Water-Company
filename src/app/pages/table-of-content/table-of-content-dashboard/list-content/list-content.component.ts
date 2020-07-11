@@ -102,6 +102,7 @@ export class ListContentComponent implements OnInit {
   }
   showContent(row){
     console.log(row)
+    this.tocService.showContent(row);
   }
 
 }

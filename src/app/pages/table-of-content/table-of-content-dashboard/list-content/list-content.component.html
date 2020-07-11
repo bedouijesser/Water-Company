@@ -37,7 +37,7 @@
 
                <!-- Product Quantity Column -->
                <ng-container matColumnDef="quantity">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </th>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount in stock </th>
                   <td mat-cell *matCellDef="let row"  [ngClass]="row.Status == 'Unavailable'? 'UA':'A'"> {{row.Quantity}} </td>
               </ng-container>
 

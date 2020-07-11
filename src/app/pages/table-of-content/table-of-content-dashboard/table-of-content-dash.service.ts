@@ -13,10 +13,6 @@ export class TableOfContentService {
   private dataObj:Object = {};
   showContentRef = new Subject<boolean>();
   reloadTOCList = new Subject<boolean>();
-  addQuotationRef : {
-    RFQ_ID: String,
-    RFQ_Reference: String
-  };
 
   getShowContentRef(): any {
     return this.showContentRef;
@@ -25,21 +21,11 @@ export class TableOfContentService {
     return this.dataObj
   }
 
-  showContent(rfqElm, dataObj) {
-    this.showContentActive=rfqElm;
-    this.dataObj = dataObj;
+  showContent(prodInfo) {
+    this.showContentActive=prodInfo;
     this.showContentRef.next(true);
-
   }
 
-  showQuot(rfqElm,dataObj){
-    this.showContentActive=rfqElm;
-    this.dataObj = dataObj;
-    // console.log(rfqElm.RFQ_ID);
-
-    this.showContentRef.next(true);
-
-  }
   showList(){
     this.showContentActive = null;
     this.showContentRef.next(true);

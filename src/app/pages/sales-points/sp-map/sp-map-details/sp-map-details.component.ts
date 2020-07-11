@@ -3,6 +3,7 @@ import {  MatTableDataSource  } from '@angular/material/table';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
 import { SPMapService } from '../sp-map.service';
+import { Subject } from 'rxjs';
 
 export interface UserData {
   Reference: string;
@@ -34,6 +35,9 @@ export class SpMapDetailsComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.markerInfo = this.spMapService.markerInfo
+    this.spMapService.markerSelected.subscribe(value=> {
+      this.markerInfo = this.spMapService.markerInfo
+    })
   }
   handleDateChange(event){
     console.log(event)
@@ -42,31 +46,31 @@ export class SpMapDetailsComponent implements OnInit {
   productList = [
     {
       'Reference' : '1',
-      'Status': 'Available',
+      'Status': 'Sent',
       'Product_name': 'Maroua',
       'Category': '1L',
-      'Quantity': Math.floor(Math.random()*1000),
+      'Quantity': 50,
     },
     {
       'Reference' : '2',
-      'Status': 'Available',
+      'Status': 'Holding',
       'Product_name': 'Maroua',
       'Category': '1,5L',
-      'Quantity': Math.floor(Math.random()*1000),
+      'Quantity': 40,
     },
     {
       'Reference' : '3',
-      'Status': 'Unavailable',
-      'Product_name': 'Milliti',
-      'Category': '1L',
-      'Quantity': 0,
+      'Status': 'Sent',
+      'Product_name': 'Safita',
+      'Category': '2L',
+      'Quantity': 100,
     },
     {
       'Reference' : '4',
-      'Status': 'Available',
+      'Status': 'Canceled',
       'Product_name': 'Milliti',
       'Category': '1,5L',
-      'Quantity': Math.floor(Math.random()*1000),
+      'Quantity': 30,
     },
   ];
 

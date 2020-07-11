@@ -2,9 +2,20 @@
   width: 100%;
   height: 100%;
 }
-.btnNewPreFile,.btnShowPreFile{
+.btnNewPreFile, .btnShowPreFile{
   margin-left:10px;
 }
+nb-card.company-details {
+  padding: 0 !important;
+  nb-card-body{
+    padding: 0;
+  }
+}
+
+nb-card.calendar {
+  padding-top: 3rem !important  ;
+}
+
 
 table {
   width: 100%;
@@ -17,6 +28,12 @@ table {
 
 td, th {
   width: 25%;
+}
+td.Holding{
+  background-color: #0093b7 ;
+}
+td.Canceled{
+  background-color: #63cdd7 ;
 }
 
 tr:hover{

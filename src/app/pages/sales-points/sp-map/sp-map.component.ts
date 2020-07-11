@@ -22,6 +22,8 @@ export class SpMapComponent implements OnInit {
     // checks if a "click" event targets a markers, else removes the details
     if ( !(<HTMLElement>e.target).classList.contains('mapboxgl-marker') ) {
       this.map.hideMarkerInfos();
+    } else  if ( !(<HTMLElement>e.target).classList.contains('mapboxgl-marker') && (this.markerSelected) ){
+      this.map.refrechMarkerInfo();
     }
   }
 

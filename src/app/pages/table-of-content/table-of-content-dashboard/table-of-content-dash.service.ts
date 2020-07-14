@@ -25,6 +25,10 @@ export class TableOfContentService {
   showList(){
     this.showContentRef.next(true);
   }
+  hideContent(){
+    this.showContentRef.next(false);
+    this.dataObj= null;
+  }
 
 
 }

@@ -8,23 +8,41 @@ import { SPMapService } from './sp-map.service';
 })
 export class SpMapComponent implements OnInit {
   markerSelected: boolean = false;
-  mousePos;
+  addMarkerSelected: boolean = false;
+
   constructor(private map: SPMapService) { }
 
   ngOnInit() {
     this.map.buildMap();
     this.map.markerSelected.subscribe(value => {
         this.markerSelected = value;
-
     });
+    this.map.addMarkerSelected.subscribe(value => {
+      this.addMarkerSelected = value;
+    })
+
+    this.map.addCustomCtrlForMap();
   }
   exitMarker(e){
-    // checks if a "click" event targets a markers, else removes the details
-    if ( !(<HTMLElement>e.target).classList.contains('mapboxgl-marker') ) {
+    // Checks to parent if an ancestor has a class name
+    function hasSomeParentTheClass(element, classname) {
+      if (element.classList.contains(classname)) return true;
+      if (element.classList.contains('map')) return false;
+      return element.parentNode && hasSomeParentTheClass(element.parentNode, classname);
+    }
+    // checks if it was an "empty" click or if one of the markers is clicked
+    // console.log(e.target)
+    if (hasSomeParentTheClass(e.target,'sidebar')){
+      return;
+    } else if ( !(<HTMLElement>e.target).classList.contains('mapboxgl-marker') ) {
       this.map.hideMarkerInfos();
-    } else  if ( !(<HTMLElement>e.target).classList.contains('mapboxgl-marker') && (this.markerSelected) ){
+    } else if ( !(<HTMLElement>e.target).classList.contains('mapboxgl-marker') && (this.markerSelected) ){
       this.map.refrechMarkerInfo();
     }
+
+
+
+    // this.map.hideMarkerInfos();
   }
 
-  }
+}

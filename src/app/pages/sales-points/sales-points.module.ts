@@ -70,6 +70,7 @@ const MATERIAL_MODULES = [
     ReactiveFormsModule,
     NbRadioModule,
     SalesPointsRoutingModule,
+
   ],
   declarations: [
     SalesPointsComponent,

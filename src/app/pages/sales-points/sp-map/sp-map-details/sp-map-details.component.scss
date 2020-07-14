@@ -5,13 +5,13 @@
 .btnNewPreFile, .btnShowPreFile{
   margin-left:10px;
 }
-nb-card.company-details {
-  padding: 0 !important;
-  nb-card-body{
-    padding: 0;
-  }
-}
 
+nb-card .company-details{
+  margin-bottom: 0 !important;
+}
+nb-card nb-card{
+  padding: 0 !important;
+}
 nb-card.calendar {
   padding-top: 3rem !important  ;
 }
@@ -28,6 +28,7 @@ table {
 
 td, th {
   width: 25%;
+  background-color: rgb(38, 180, 236) ;
 }
 td.Holding{
   background-color: #0093b7 ;
@@ -73,7 +74,6 @@ margin-bottom:5px;
 .btnShowTaskMenu{
   padding:0px;
   text-align:left;
-
 }
 
 nb-list-item > span {
@@ -85,4 +85,7 @@ nb-list-item > span:nth-child(1){
 }
 nb-list-item > span:nth-child(2){
   flex: 2;
+}
+.new-marker {
+  height: 100% !important;
 }

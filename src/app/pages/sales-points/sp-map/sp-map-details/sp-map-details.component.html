@@ -1,30 +1,26 @@
-<nb-card class="sp-details">
+<nb-card class="sp-details" *ngIf="this.markerInfo">
   <nb-card-header> Sales points Details </nb-card-header>
-  <nb-card-body class="sp-container container row">
-    <div class="col-xxl-4">
+    <div>
       <div class="containter">
 
-        <nb-card size="small" class="size-small col-sm-12 company-details">
-          <nb-card-header>
-            <span>Company Details</span>
-          </nb-card-header>
-          <nb-card-body>
+        <nb-card size="small" class="size-small company-details">
+
+
 
             <nb-list role="list">
               <nb-list-item><span>Name :</span> <span>{{ markerInfo.properties.description }}</span></nb-list-item>
               <nb-list-item><span>Manager :</span><span> {{ markerInfo.properties.manager }}</span> </nb-list-item>
               <nb-list-item><span>Email :</span><span>{{ markerInfo.properties.email }}</span> </nb-list-item>
-              <nb-list-item><span>Tel : </span><span>(+216) 98765432</span> </nb-list-item>
-              <nb-list-item><span>Fax : </span><span>(+216) 76543210</span> </nb-list-item>
+              <nb-list-item><span>Tel : </span><span>{{ markerInfo.properties.tel }}</span> </nb-list-item>
+              <nb-list-item><span>Fax : </span><span>{{ markerInfo.properties.fax }}</span> </nb-list-item>
 
             </nb-list>
-          </nb-card-body>
         </nb-card>
 
       </div>
     </div>
     <!-- Products Tables Element -->
-    <div class="col-xxl-8" *ngIf="markerInfo.properties.type !== 'Home-Building'">
+    <div *ngIf="markerInfo.properties.type !== 'Home-Building'">
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" matSort>
 
@@ -74,5 +70,29 @@
     </div> -->
 
 
-  </nb-card-body>
+
+</nb-card>
+<nb-card class="sp-details" *ngIf="this.newMarker">
+<nb-card-header> Add Sales points </nb-card-header>
+    <div [formGroup]="this.form">
+      <div class="containter">
+
+        <nb-card size="small" class="size-small company-details new-marker">
+
+            <nb-list role="list">
+              <nb-list-item><span>Name :</span> <span><input nbInput formControlName="name"></span></nb-list-item>
+              <nb-list-item><span>Manager :</span><span><input nbInput formControlName="manager"> </span> </nb-list-item>
+              <nb-list-item><span>Email :</span><span><input nbInput formControlName="email"> </span> </nb-list-item>
+              <nb-list-item><span>Tel : </span><span><input nbInput formControlName="tel"></span> </nb-list-item>
+              <nb-list-item><span>Fax : </span><span><input nbInput formControlName="fax"></span> </nb-list-item>
+              <nb-list-item><span>Coordonates : </span><span><input nbInput formControlName="coordonates"></span> </nb-list-item>
+              <nb-list-item>
+                <button mat-button (click)="addMarker()" [disabled]="!this.form.valid">Add Marker</button>
+             </nb-list-item>
+
+            </nb-list>
+        </nb-card>
+
+      </div>
+    </div>
 </nb-card>

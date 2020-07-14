@@ -15,3 +15,7 @@ if (environment.production) {
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
+
+// document.addEventListener('load',()=> {
+//   document.querySelector('.loader').className+= 'd-none';
+// })

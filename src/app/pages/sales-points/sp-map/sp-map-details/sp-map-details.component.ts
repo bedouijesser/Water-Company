@@ -1,9 +1,9 @@
-import {SelectionModel} from '@angular/cdk/collections';
 import {  MatTableDataSource  } from '@angular/material/table';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
 import { SPMapService } from '../sp-map.service';
-import { Subject } from 'rxjs';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 export interface UserData {
   Reference: string;
@@ -19,28 +19,53 @@ export interface UserData {
 })
 
 export class SpMapDetailsComponent implements OnInit {
-  date: Date;
   markerInfo;
-
+  newMarker:boolean = false;
+  newMarkerCoordonates: string[] = [];
+  form: FormGroup;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(private spMapService: SPMapService) { }
+  constructor(
+    private spMapService: SPMapService,
+    private fb: FormBuilder,
+    private toastr:ToastrService,
+    ) { }
 
   ngOnInit() {
+    this.formInit();
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(this.productList);
 
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.markerInfo = this.spMapService.markerInfo;
-    this.spMapService.markerSelected.subscribe(value => {
+    this.spMapService.markerSelected.subscribe(() => {
       this.markerInfo = this.spMapService.markerInfo;
+
     });
+    this.spMapService.addMarkerSelected.subscribe(value => {
+      this.newMarker = value;
+      console.log('marker selected:', value, this.newMarker);
+    })
+    this.spMapService.coordonatesSubject.subscribe(value => {
+      this.newMarkerCoordonates = value
+      this.form.patchValue({
+        coordonates: value.join(' , ')
+      })
+    })
   }
-  handleDateChange(event){
-    console.log(event);
+
+  formInit() {
+    this.form=this.fb.group({
+      name:[null,Validators.required],
+      manager:[null,Validators.required],
+      email:[null,Validators.required],
+      tel:[null,Validators.required],
+      fax:[null,Validators.required],
+      coordonates:[null,Validators.required],
+    });
   }
 
   productList = [
@@ -76,7 +101,6 @@ export class SpMapDetailsComponent implements OnInit {
 
 
 
-
   displayedColumns: string[] = ['ref', 'status', 'name', 'category', 'quantity'];
   dataSource: MatTableDataSource <UserData> ;
 
@@ -87,8 +111,13 @@ export class SpMapDetailsComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  showContent(){
+  // Keeps the hover effect in the table, too lazy to remove it
+  showContent(){}
 
+  addMarker(){
+    this.toastr.success("Supplier Quotation Created Successefully !");
+    this.spMapService.addSPMarker(this.form.value);
+    this.form.reset();
   }
   ngOnDestroy() {
     this.markerInfo = null;

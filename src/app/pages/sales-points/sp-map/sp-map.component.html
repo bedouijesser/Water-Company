@@ -1,7 +1,12 @@
 <nb-card class="map">
   <nb-card-header> Sales points Map </nb-card-header>
   <nb-card-body class="map-container">
-    <div id="map" class="map-element" (click)="exitMarker($event)"></div>
+    <div id="map" class="map-element" (click)="exitMarker($event)">
+      <div id="left" class="sidebar flex-center left" [ngClass]="(this.markerSelected || this.addMarkerSelected) ? 'expanded':'collapsed'">
+        <div class="sidebar-content rounded-rect flex-center">
+          <ngx-sp-map-details *ngIf="this.markerSelected || this.addMarkerSelected"></ngx-sp-map-details>
+        </div>
+      </div>
+    </div>
   </nb-card-body>
 </nb-card>
-<ngx-sp-map-details *ngIf="this.markerSelected"></ngx-sp-map-details>

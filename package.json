@@ -27,10 +27,13 @@
   },
   "dependencies": {
     "@akveo/ng2-completer": "^9.0.1",
+    "@angular-devkit/build-angular": "^0.900.4",
     "@angular/animations": "^9.0.4",
     "@angular/cdk": "^9.1.2",
+    "@angular/cli": "^9.0.4",
     "@angular/common": "^9.0.4",
     "@angular/compiler": "^9.0.4",
+    "@angular/compiler-cli": "^9.0.4",
     "@angular/core": "^9.0.4",
     "@angular/forms": "^9.0.4",
     "@angular/google-maps": "^9.1.0",
@@ -73,13 +76,11 @@
     "tinymce": "4.5.7",
     "tslib": "^1.10.0",
     "typeface-exo": "0.0.22",
+    "typescript": "^3.7.5",
     "web-animations-js": "^2.3.2",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.900.4",
-    "@angular/cli": "^9.0.4",
-    "@angular/compiler-cli": "^9.0.4",
     "@angular/language-service": "9.0.4",
     "@compodoc/compodoc": "1.0.1",
     "@fortawesome/fontawesome-free": "^5.2.0",
@@ -106,7 +107,6 @@
     "stylelint": "7.13.0",
     "ts-node": "3.2.2",
     "tslint": "^5.7.0",
-    "tslint-language-service": "^0.9.9",
-    "typescript": "3.7.5"
+    "tslint-language-service": "^0.9.9"
   }
 }

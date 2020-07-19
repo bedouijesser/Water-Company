@@ -9,7 +9,12 @@
 
         <span>{{ entry.day }}</span>
         <span>{{ entry.sold }}</span>
-        <span> {{ this.compareEntry(entry)+"%" }}</span>
+        <span>
+          <nb-icon
+          [icon]="this.compareEntry(entry)> 0? 'arrow-up' :'arrow-down'"
+          [ngClass]="this.compareEntry(entry)> 0? 'arrow-up' :'arrow-down'"
+          ></nb-icon>
+          {{ ( this.compareEntry(entry)>0 ? this.compareEntry(entry) : -this.compareEntry(entry) ) + "%"  }}</span>
 
       </nb-list-item>
     </nb-list>

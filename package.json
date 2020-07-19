@@ -1,13 +1,12 @@
 {
   "name": "water-company",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bedouijesser/Water-Company.git"
   },
   "scripts": {
     "ng": "ng",
-    "conventional-changelog": "conventional-changelog",
     "start": "node server.js",
     "build": "ng build",
     "build:prod": "npm run build -- --prod --aot",
@@ -50,6 +49,7 @@
     "@nebular/theme": "5.0.0",
     "@swimlane/ngx-charts": "^13.0.2",
     "angular2-chartjs": "0.4.1",
+    "body-parser": "^1.19.0",
     "bootstrap": "4.3.1",
     "chart.js": "2.7.1",
     "ckeditor": "4.7.3",
@@ -61,6 +61,7 @@
     "ionicons": "2.0.1",
     "leaflet": "1.2.0",
     "mapbox-gl": "^1.11.0",
+    "mysql": "^2.18.1",
     "nebular-icons": "1.1.0",
     "ng2-ckeditor": "^1.2.2",
     "ng2-smart-table": "^1.6.0",

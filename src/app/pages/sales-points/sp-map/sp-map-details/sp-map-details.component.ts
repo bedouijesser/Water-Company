@@ -4,6 +4,7 @@ import { MatPaginator, MatSort } from '@angular/material';
 import { SPMapService } from '../sp-map.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { DataService } from '../../../../services/data.service';
 
 export interface UserData {
   Reference: string;
@@ -29,6 +30,7 @@ export class SpMapDetailsComponent implements OnInit {
 
   constructor(
     private spMapService: SPMapService,
+    private dataService: DataService,
     private fb: FormBuilder,
     private toastr:ToastrService,
     ) { }
@@ -43,11 +45,10 @@ export class SpMapDetailsComponent implements OnInit {
     this.markerInfo = this.spMapService.markerInfo;
     this.spMapService.markerSelected.subscribe(() => {
       this.markerInfo = this.spMapService.markerInfo;
-
     });
     this.spMapService.addMarkerSelected.subscribe(value => {
       this.newMarker = value;
-      console.log('marker selected:', value, this.newMarker);
+      // console.log('marker selected:', value, this.newMarker);
     })
     this.spMapService.coordonatesSubject.subscribe(value => {
       this.newMarkerCoordonates = value
@@ -61,9 +62,9 @@ export class SpMapDetailsComponent implements OnInit {
     this.form=this.fb.group({
       name:[null,Validators.required],
       manager:[null,Validators.required],
-      email:[null,Validators.required],
-      tel:[null,Validators.required],
-      fax:[null,Validators.required],
+      email:[null,[Validators.required,Validators.email]],
+      tel:[null,[Validators.required,Validators.pattern("[0-9]{8}")]],
+      fax:[null,[Validators.required,Validators.pattern("[0-9]{8}")]],
       coordonates:[null,Validators.required],
     });
   }
@@ -115,9 +116,29 @@ export class SpMapDetailsComponent implements OnInit {
   showContent(){}
 
   addMarker(){
-    this.toastr.success("Supplier Quotation Created Successefully !");
-    this.spMapService.addSPMarker(this.form.value);
-    this.form.reset();
+    this.toastr.success("Marker Added Successefully !");
+    // use getRawValue() instead of value to get the disabled coordenations input value
+    let feature = {
+      'type': 'Feature',
+      'properties': {
+        'title': this.form.getRawValue().name,
+        'description': this.form.getRawValue().name,
+        'manager': this.form.getRawValue().manager,
+        'iconSize': [80, 80],
+        'type': 'Sales-Point',
+        'email': this.form.getRawValue().email,
+        'fax': this.form.getRawValue().fax,
+        'tel': this.form.getRawValue().tel
+      },
+      'geometry': {
+        'type': 'Point',
+        'coordinates': this.form.getRawValue().coordonates.split(',').map(x=>Number(x)),
+      }
+    }
+    this.dataService.addMarker(feature).subscribe(()=> {
+      this.spMapService.addSPMarker(feature)
+      this.form.reset();
+    })
   }
   ngOnDestroy() {
     this.markerInfo = null;

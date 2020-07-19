@@ -21,8 +21,8 @@ export class TrafficCardComponent {
   trafficListData: TrafficList;
   revealed = false;
   compareEntry(entry) {
-    if (entry.day === 'Mon') return '15.56';
-    return (((entry.sold - this.trafficList[entry.id - 1].sold) / entry.sold) * 100).toFixed(2);
+    if (entry.day === 'Mon') return 15.56;
+    return Number( (((entry.sold - this.trafficList[entry.id - 1].sold) / entry.sold) * 100).toFixed(2) );
   }
 
 

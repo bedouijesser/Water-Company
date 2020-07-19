@@ -36,7 +36,12 @@ nb-list-item > span:nth-child(1){
 nb-list-item > span:nth-child(2){
   flex: 2;
 }
-
 .pos-desc-data{
   height: 36.5625rem;
+}
+nb-icon.arrow-up {
+  color: limegreen !important;
+}
+nb-icon.arrow-down {
+  color: crimson !important;
 }

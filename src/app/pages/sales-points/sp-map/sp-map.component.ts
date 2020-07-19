@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SPMapService } from './sp-map.service';
+import { DataService } from '../../../services/data.service'
 
 @Component({
   selector: 'ngx-sp-map',
@@ -10,10 +11,14 @@ export class SpMapComponent implements OnInit {
   markerSelected: boolean = false;
   addMarkerSelected: boolean = false;
 
-  constructor(private map: SPMapService) { }
+  constructor(private map: SPMapService,
+              private data: DataService) { }
 
   ngOnInit() {
-    this.map.buildMap();
+    this.data.getSPList().subscribe(value => {
+      this.map.buildMap(value);
+      this.map.addCustomCtrlForMap();
+    })
     this.map.markerSelected.subscribe(value => {
         this.markerSelected = value;
     });
@@ -21,7 +26,6 @@ export class SpMapComponent implements OnInit {
       this.addMarkerSelected = value;
     })
 
-    this.map.addCustomCtrlForMap();
   }
   exitMarker(e){
     // Checks to parent if an ancestor has a class name
@@ -39,8 +43,6 @@ export class SpMapComponent implements OnInit {
     } else if ( !(<HTMLElement>e.target).classList.contains('mapboxgl-marker') && (this.markerSelected) ){
       this.map.refrechMarkerInfo();
     }
-
-
 
     // this.map.hideMarkerInfos();
   }

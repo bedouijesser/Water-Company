@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from '../../../../environments/environment';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
@@ -15,6 +15,7 @@ export class SPMapService {
   lng = 9.5375;
   zoom = 6;
   RTLTextPlugin: boolean = false;
+
   activeMarker = false;
   activeMarkerInstence: mapboxgl.Marker;
   mouseUpCoordonates;
@@ -22,72 +23,57 @@ export class SPMapService {
 
   // Service Attributes
   markerSelected = new Subject < boolean > ();
-  addMarkerSelected = new Subject < boolean > ();
+  addMarkerSelected = new BehaviorSubject(false);
   coordonatesSubject = new Subject < string[] > ();
   markerInfo: Object = null;
   markerInstences = [];
 
   geojson = {
     'type': 'FeatureCollection',
-    'features': [{
-        'type': 'Feature',
-        'properties': {
-          'title': 'Main-Building',
-          'description': 'Main-Building',
-          'manager': 'Ben-Salama Charfeddin',
-          'iconSize': [80, 80],
-          'type': 'Home-Building',
-          'email': 'Company@corporation.com',
-          'tel': 98765432,
-          'fax': 98765432
-        },
-        'geometry': {
-          'type': 'Point',
-          'coordinates': [10, 35.35],
-        },
-      },
-      {
-        'type': 'Feature',
-        'properties': {
-          'title': 'Sales-point 1',
-          'description': 'Societé Berrich',
-          'manager': 'Ahmed Berrich',
-          'iconSize': [70, 70],
-          'type': 'Sales-point',
-          'email': 'Berrich@corp.com',
-          'tel': 98765432,
-          'fax': 98765432
-        },
-        'geometry': {
-          'type': 'Point',
-          'coordinates': [10, 35.6],
-        },
-      },
-      {
-        'type': 'Feature',
-        'properties': {
-          'title': 'Sales-point 2',
-          'description': 'Societé Gaaloul',
-          'iconSize': [70, 70],
-          'type': 'Sales-Point',
-          'manager': 'Fathi Gaaloul',
-          'email': 'Gaaloul@corp.com',
-          'tel': 98765432,
-          'fax': 98765432
-        },
-        'geometry': {
-          'type': 'Point',
-          'coordinates': [10, 35.7],
-        },
-      },
-    ],
+    'features': []
   };
   constructor() {
     mapboxgl.accessToken = environment.mapbox.accessToken;
-
   }
 
-  buildMap() {
+  buildMap(value) {
+
+    if(this.geojson.features.length === 0){
+
+      // Gets the values from the Database
+
+      (<Array<Object>>value).forEach(spValue => {
+        // console.log(spValue);
+        let coordinates = typeof(spValue["SP_Coordonates"]) === "string" ? JSON.parse(spValue["SP_Coordonates"]) : spValue["SP_Coordonates"];
+        // console.log(spValue["SP_Coordonates"]);
+        let obj = {
+
+          'type': 'Feature',
+          'properties': {
+            'title': spValue["SP_Title"],
+            'description': spValue["SP_Description"],
+            'iconSize': [70, 70],
+            'type': spValue["SP_Type"],
+            'manager': spValue["SP_Manager"],
+            'email': spValue["SP_Email"],
+            'tel': spValue["SP_Tel"],
+            'fax': spValue["SP_Fax"]
+          },
+          'geometry': {
+            'type': 'Point',
+            'coordinates': coordinates,
+          }
+        }
+        // console.log(obj);
+        this.geojson.features.push(obj);
+      });
+
+    } else {
+      this.geojson.features=value;
+    }
+
+
+
     if (!this.RTLTextPlugin) {
       mapboxgl.setRTLTextPlugin(
         'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js',
@@ -107,7 +93,7 @@ export class SPMapService {
     });
 
     // a fix for when the map is not resizing to it's container
-    window.addEventListener('load', () => {
+    this.map.on('load', () => {
       this.map.resize();
     })
     // ***************** GeoCoder (seachBar) ******************//
@@ -121,8 +107,8 @@ export class SPMapService {
           feature.properties.description
           .toLowerCase()
           .search(query.toLowerCase()) !== -1
-        ) {
-          feature['place_name'] = feature.properties.type == "Home-Building" ? '🏢 ' + feature.properties.description : '💧 ' + feature.properties.description;
+          ) {
+            feature['place_name'] = feature.properties.type == "Home-Building" ? '🏢 ' + feature.properties.description : '💧 ' + feature.properties.description;
           feature['center'] = feature.geometry.coordinates;
           feature['place_type'] = ['Sales Point'];
           matchingFeatures.push(feature);
@@ -141,6 +127,9 @@ export class SPMapService {
     });
     geocoder.on('result', e => {
       this.geoMarker = true;
+      if (this.activeMarkerInstence){
+        this.activeMarkerInstence.remove();
+      }
 
     })
 
@@ -158,13 +147,17 @@ export class SPMapService {
     for (const info of this.geojson.features) {
       const el = document.createElement('div');
       el.className = 'marker';
-      el.style.backgroundImage = info.properties.type == 'Home-Building' ? 'url(\'/assets/images/Building-location-icon.png\')' : 'url(\'/assets/images/SP-location-icon.png\')';
+      el.style.backgroundImage = info.properties.type == 'Main-Building' ? 'url(\'/assets/images/Building-location-icon.png\')' : 'url(\'/assets/images/SP-location-icon.png\')';
       el.style.backgroundSize = 'cover';
       el.style.width = info.properties.iconSize[0] + 'px';
       el.style.height = info.properties.iconSize[1] + 'px';
 
       const mouseClickHandler = () => {
         this.showMarkerInfos(info);
+        this.map.flyTo({
+          center: info.geometry.coordinates
+          });
+        if( this.activeMarkerInstence ) this.activeMarkerInstence.remove();
       };
       el.addEventListener('click', mouseClickHandler.bind(this));
       el.addEventListener('mouseenter', () => {
@@ -173,10 +166,10 @@ export class SPMapService {
 
       // Create a new Marker instence and add it to the map
       marker = new mapboxgl.Marker(el)
-        .setLngLat(info.geometry.coordinates)
+      .setLngLat(info.geometry.coordinates)
         .setPopup(new mapboxgl.Popup({
-            offset: 25,
-            closeButton: false,
+          offset: 25,
+          closeButton: false,
             closeOnClick: true,
             anchor: 'bottom',
           }) // add popups
@@ -196,26 +189,7 @@ export class SPMapService {
 
     });
   }
-  addMarkerInfos() {
-    this.addMarkerSelected.next(true)
-  }
-  showMarkerInfos(info: Object) {
-    // console.log(info)
-    this.markerInfo = info;
-    this.markerSelected.next(true);
-  }
-  refrechMarkerInfo() {
-    this.hideMarkerInfos();
-    this.showMarkerInfos(this.markerInfo);
-  }
-  hideMarkerInfos() {
-    this.markerInfo = null;
-    this.markerSelected.next(false);
-  }
-
-  // this.addMarkerSelected.next(false);
-
-  // adds the Add Marker button
+  // Custom "add marker" control
   addCustomCtrlForMap() {
     let topRightCtrlContainer = document.querySelector('div.mapboxgl-ctrl-top-right');
     const el = document.createElement('div');
@@ -228,7 +202,12 @@ export class SPMapService {
     </div>`;
 
     el.addEventListener('click', e => {
-      if (this.activeMarkerInstence ) this.activeMarkerInstence.remove();
+      if (this.activeMarkerInstence ) {
+        this.activeMarkerInstence.remove();
+        this.addMarkerSelected.next(false);
+        this.activeMarkerInstence = null;
+        return;
+      }
       if (!this.geoMarker){
         this.activeMarkerInstence = new mapboxgl.Marker({
           draggable: true,
@@ -244,27 +223,31 @@ export class SPMapService {
     })
     topRightCtrlContainer.append(el);
   }
-  addSPMarker(info){
-    let feature = {
-      'type': 'Feature',
-      'properties': {
-        'title': 'Sales-point 3',
-        'description': info.name,
-        'manager': info.manager,
-        'iconSize': [80, 80],
-        'type': 'Sales-Point',
-        'email': info.email,
-        'fax': info.fax,
-        'tel': info.tel
-      },
-      'geometry': {
-        'type': 'Point',
-        'coordinates': info.coordonates.split(','),
-      }
-    }
-    console.log(feature.geometry.coordinates)
+  addMarkerInfos() {
+    this.addMarkerSelected.next(true)
+  }
+  showMarkerInfos(info: Object) {
+    // console.log(info)
+    this.markerInfo = info;
+    this.markerSelected.next(true);
+    this.addMarkerSelected.next(false);
+  }
+  refrechMarkerInfo() {
+    this.hideMarkerInfos();
+    this.showMarkerInfos(this.markerInfo);
+  }
+  hideMarkerInfos() {
+    this.markerInfo = null;
+    this.markerSelected.next(false);
+  }
+
+  // this.addMarkerSelected.next(false);
+
+  addSPMarker(feature){
+    // console.log(this.geojson.features)
+    // console.log(feature.geometry.coordinates);
     this.geojson.features.push(feature)
-    this.buildMap();
+    this.buildMap(this.geojson.features);
     this.addMarkerSelected.next(false);
   }
 

@@ -16,10 +16,11 @@ export class DashboardComponent implements OnInit {
     {'id': 6, 'day': 'Sun', 'sold': 550},
   ];
   spList = [
-    {'id': 1, 'SP_Name': 'Societé Berrich', 'SP_Accountant_Name': 'Ahmed Berrich'},
-    {'id': 2, 'SP_Name': 'Societé Abadllah', 'SP_Accountant_Name': 'Salah Ben Abdallah'},
-    {'id': 3, 'SP_Name': 'Societé Gaaloul', 'SP_Accountant_Name': 'Fathi Gaaloul'},
-    {'id': 4, 'SP_Name': 'Societé Samir', 'SP_Accountant_Name': 'Yahya Samir'},
+    {'id': 1, 'SP_Name': 'Sales Point 1', 'SP_Manager_Name': 'Manager 1'},
+    {'id': 2, 'SP_Name': 'Sales Point 2', 'SP_Manager_Name': 'Manager 2'},
+    {'id': 3, 'SP_Name': 'Sales Point 3', 'SP_Manager_Name': 'Manager 3'},
+    {'id': 4, 'SP_Name': 'Sales Point 4', 'SP_Manager_Name': 'Manager 4'},
+    {'id': 5, 'SP_Name': 'Sales point 5', 'SP_Manager_Name': 'Manager 5'}
   ];
 
   constructor() {}

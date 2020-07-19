@@ -89,3 +89,6 @@ nb-list-item > span:nth-child(2){
 .new-marker {
   height: 100% !important;
 }
+input.ng-touched.ng-invalid{
+  border: 1px red solid;
+}

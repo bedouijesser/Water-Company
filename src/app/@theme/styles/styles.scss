@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap');
 
 // Materialize Core
-@import '@angular/material/prebuilt-themes/pink-bluegrey.css';
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
 
 // themes - our custom or/and out of the box themes
 @import 'themes';
@@ -47,6 +47,13 @@
 ::-webkit-scrollbar-track {
   background: #f7f9fc;
 }
+.mat-form-field-label {
+  color: black !important;
+}
+.mat-form-field-underline{
+  background-color: black !important;
+}
+
 
 // Other styles
 @import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';

@@ -14,7 +14,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
-    title: 'Table of Content',
+    title: 'Storage Items',
     icon: 'archive',
     link: '/pages/table-of-content',
     home: true,

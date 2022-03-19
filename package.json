@@ -78,7 +78,7 @@
     "tinymce": "4.5.7",
     "tslib": "^1.10.0",
     "typeface-exo": "0.0.22",
-    "typescript": "^3.7.5",
+    "typescript": "^3.9.10",
     "web-animations-js": "^2.3.2",
     "zone.js": "~0.10.2"
   },
